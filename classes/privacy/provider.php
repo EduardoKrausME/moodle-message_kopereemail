@@ -29,11 +29,7 @@ use core_privacy\local\metadata\collection;
 /**
  * Privacy provider for message_kopereemail.
  */
-class provider implements
-    \core_privacy\local\metadata\provider,
-    \core_privacy\local\request\core_userlist_provider,
-    \core_privacy\local\request\user_preference_provider,
-    \core_privacy\local\request\plugin\provider {
+class provider implements \core_privacy\local\metadata\provider {
 
     /**
      * Describe stored data.
