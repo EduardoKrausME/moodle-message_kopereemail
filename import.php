@@ -15,17 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * import.php
+ * Import templates JSON for environment migration.
  *
  * @package   message_kopereemail
  * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-/**
- * Import templates JSON for environment migration.
- *
- * @package    message_kopereemail
  */
 
 use core\output\notification;
@@ -84,7 +78,7 @@ if ($data = $mform->get_data()) {
     if (!manager::validate_payload($payload)) {
         redirect(
             $PAGE->url,
-            "2-".get_string("import_invalid_payload", "message_kopereemail"),
+            get_string("import_invalid_payload", "message_kopereemail"),
             null,
             notification::NOTIFY_ERROR
         );
@@ -95,7 +89,7 @@ if ($data = $mform->get_data()) {
         "importwrapper" => !empty($data->importwrapper),
     ]);
 
-    $a = (object)[
+    $a = (object) [
         "imported" => $result["imported"],
         "skipped" => $result["skipped"],
         "wrapper" => !empty($result["wrapperupdated"]) ? "sim" : "não",
