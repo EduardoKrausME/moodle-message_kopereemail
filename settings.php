@@ -39,6 +39,16 @@ if ($ADMIN->fulltree) {
     );
     $settings->add($setting);
 
+    $testurl = new moodle_url("/message/output/kopereemail/test-template.php");
+    $title = get_string("action_preview_click", "message_kopereemail");
+    $test = html_writer::link($testurl, $title, ["class" => "btn btn-sm btn-warning"]);
+    $setting = new admin_setting_heading(
+        "message_kopereemail/test_template",
+        get_string("action_preview", "message_kopereemail"),
+        $test
+    );
+    $settings->add($setting);
+
     $contextmustache = [
         "exporturl" => (new moodle_url("/message/output/kopereemail/export.php", ["sesskey" => sesskey()]))->out(false),
         "importurl" => (new moodle_url("/message/output/kopereemail/import.php"))->out(false),
