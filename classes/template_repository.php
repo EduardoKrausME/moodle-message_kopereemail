@@ -97,7 +97,7 @@ class template_repository {
 
         $out = preg_replace($pattern, $replacement, $html);
 
-        // preg_replace pode retornar null em caso de erro de regex
+        // It may return null in case of a regex error.
         return $out ?? $html;
     }
 
