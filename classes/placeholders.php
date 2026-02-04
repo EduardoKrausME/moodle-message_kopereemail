@@ -128,7 +128,7 @@ class placeholders {
             "shortname" => $SITE->shortname ?? "",
             "url" => (new moodle_url("/"))->out(false),
             "logourl" => $OUTPUT->get_logo_url(),
-            "compact_logourl"=> $OUTPUT->get_compact_logo_url(),
+            "compact_logourl" => $OUTPUT->get_compact_logo_url(),
         ];
 
         if ($eventdata->userto) {
