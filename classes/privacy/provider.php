@@ -30,7 +30,10 @@ use core_privacy\local\metadata\collection;
  * Privacy provider for message_kopereemail.
  */
 class provider implements
-    \core_privacy\local\metadata\provider {
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\core_userlist_provider,
+    \core_privacy\local\request\user_preference_provider,
+    \core_privacy\local\request\plugin\provider {
 
     /**
      * Describe stored data.
@@ -39,13 +42,6 @@ class provider implements
      * @return collection
      */
     public static function get_metadata(collection $collection) {
-        $collection->add_database_table("message_kopereemail_messages", [
-            "useridto" => "privacy:metadata:message_kopereemail_messages:useridto",
-            "conversationid" => "privacy:metadata:message_kopereemail_messages:conversationid",
-            "messageid" => "privacy:metadata:message_kopereemail_messages:messageid",
-            "useridfrom" => "privacy:metadata:message_kopereemail_messages:useridfrom",
-        ], "privacy:metadata:message_kopereemail_messages");
-
         $collection->link_external_location("smtp", [
             "recipient" => "privacy:metadata:recipient",
             "userfrom" => "privacy:metadata:userfrom",

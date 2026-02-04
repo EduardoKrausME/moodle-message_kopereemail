@@ -4,31 +4,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-
-        <TABLE NAME="message_kopereemail_messages"
-               COMMENT="Keeps track of group conversation messages to send in a digest">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="useridfrom" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="useridto" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="conversationid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="messageid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="useridfrom_fk" TYPE="foreign" FIELDS="useridfrom" REFTABLE="user" REFFIELDS="id"/>
-                <KEY NAME="useridto_fk" TYPE="foreign" FIELDS="useridto" REFTABLE="user" REFFIELDS="id"/>
-                <KEY NAME="conversationid_fk" TYPE="foreign" FIELDS="conversationid" REFTABLE="message_conversations"
-                     REFFIELDS="id"/>
-                <KEY NAME="messageid_fk" TYPE="foreign" FIELDS="messageid" REFTABLE="messages" REFFIELDS="id"/>
-            </KEYS>
-            <INDEXES>
-                <INDEX NAME="useridto_ix" UNIQUE="false" FIELDS="useridto"/>
-                <INDEX NAME="conversationid_ix" UNIQUE="false" FIELDS="conversationid"/>
-                <INDEX NAME="messageid_ix" UNIQUE="false" FIELDS="messageid"/>
-            </INDEXES>
-        </TABLE>
-
         <TABLE NAME="message_kopereemail_template" COMMENT="Custom HTML templates per message provider">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
@@ -50,6 +25,5 @@
                 <INDEX NAME="component_ix" UNIQUE="false" FIELDS="component"/>
             </INDEXES>
         </TABLE>
-
     </TABLES>
 </XMLDB>

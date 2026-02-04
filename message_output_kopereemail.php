@@ -113,11 +113,10 @@ class message_output_kopereemail extends message_output {
             );
         } else {
             $messagetosend = new stdClass();
-            $messagetosend->useridfrom = $eventdata->userfrom->id;
             $messagetosend->useridto = $recipient->id;
             $messagetosend->conversationid = $eventdata->convid;
             $messagetosend->messageid = $eventdata->savedmessageid;
-            $result = $DB->insert_record("message_kopereemail_messages", $messagetosend, false);
+            $result = $DB->insert_record("message_email_messages", $messagetosend, false);
         }
 
         // Cleanup attachment temp file if created.
