@@ -1,4 +1,4 @@
-# message_kopereemail — Kopere Email (Message output)
+# message_kopereemail - Kopere Email (Message output)
 
 **message_kopereemail** is a Moodle *message output* based on `message_email`, created to allow **full customization of the email** sent by Moodle, while also applying a **base template** to standardize visual identity.
 
@@ -7,9 +7,9 @@ The idea is simple:
 * Moodle keeps sending notifications as usual.
 * `message_kopereemail` intercepts email delivery and:
 
-  * **If there is a custom template for that provider** → replaces the original content with the custom HTML.
-  * **If there is final HTML** → applies an **HTML wrapper** (base template) on top.
-  * **If there is no HTML** → generates simple HTML from the plain text (and keeps the plain text too).
+  * **If there is a custom template for that provider** -> replaces the original content with the custom HTML.
+  * **If there is final HTML** -> applies an **HTML wrapper** (base template) on top.
+  * **If there is no HTML** -> generates simple HTML from the plain text (and keeps the plain text too).
 
 ## What the plugin solves (in practice)
 
@@ -22,14 +22,14 @@ The idea is simple:
 
 When the plugin is installed, it performs a planned migration to take the “place” of the default email:
 
-* Copies existing configs from `message/email` to the new output (e.g., `email_provider_*` → `kopereemail_provider_*`)
+* Copies existing configs from `message/email` to the new output (e.g., `email_provider_*` -> `kopereemail_provider_*`)
 * Adjusts `message_provider_*_enabled` flags by replacing `email` with `kopereemail`
 * Sets lock (`email_provider_*_locked = 1`) for all providers
 * Disables the old `email` processor in `mdl_message_processors`
 
 And on uninstall:
 
-* reverts `kopereemail` → `email` in the relevant configs
+* reverts `kopereemail` -> `email` in the relevant configs
 
 > This exists to make it easier so students don’t receive two emails: one with the horrible default Moodle layout and another with the template.
 
@@ -59,8 +59,8 @@ The wrapper is only applied when final HTML exists.
 
 **Rule:**
 
-* if `fullmessagehtml` exists → apply wrapper
-* if it doesn’t → the plugin creates simple HTML from `fullmessage` and then applies the wrapper (if configured)
+* if `fullmessagehtml` exists -> apply wrapper
+* if it doesn’t -> the plugin creates simple HTML from `fullmessage` and then applies the wrapper (if configured)
 
 This keeps visual consistency without rewriting every template from scratch.
 
@@ -98,7 +98,7 @@ This reduces spam and improves the experience in heavy chat environments.
 
 Typical path:
 
-* Site administration → General → Messaging → **Kopere Email**
+* Site administration -> General -> Messaging -> **Kopere Email**
 
 > It’s under the `General` tab, not the `Plugins` tab.
 
