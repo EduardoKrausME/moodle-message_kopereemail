@@ -14,13 +14,13 @@ The idea is simple:
 ## What the plugin solves (in practice)
 
 * Standardize email layout with consistent header/footer and styles (wrapper).
-* Create “nice” tailored messages for specific events (e.g., *Course completed*).
+* Create "nice" tailored messages for specific events (e.g., *Course completed*).
 * Adjust email subject and body without touching core / without theme hacks.
 * Centralize management of customized messages in an admin page.
 
 ## Automatic configuration migration (what happens on install)
 
-When the plugin is installed, it performs a planned migration to take the “place” of the default email:
+When the plugin is installed, it performs a planned migration to take the "place" of the default email:
 
 * Copies existing configs from `message/email` to the new output (e.g., `email_provider_*` -> `kopereemail_provider_*`)
 * Adjusts `message_provider_*_enabled` flags by replacing `email` with `kopereemail`
@@ -45,7 +45,7 @@ The plugin adds a customization layer:
 * Create a **custom HTML template** for it.
 * From then on, whenever that provider is triggered, the email will use the custom HTML.
 
-> Result: the “default Moodle” text is not sent when a custom template exists for that provider.
+> Result: the "default Moodle" text is not sent when a custom template exists for that provider.
 
 ### 2) HTML wrapper (base email template)
 
@@ -73,7 +73,7 @@ Moodle works with:
 
 `message_kopereemail` ensures that:
 
-* There is always “sendable” HTML
+* There is always "sendable" HTML
 * And plain text continues to exist (for clients that prefer text, logs, etc.)
 
 When you create a custom HTML template:
