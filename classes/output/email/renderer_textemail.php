@@ -30,6 +30,8 @@ namespace message_kopereemail\output\email;
 class renderer_textemail extends \message_kopereemail\output\renderer {
 
     /**
+     * Return mustache template file name for this renderer.
+     *
      * @return string
      */
     public function get_template_name() {
