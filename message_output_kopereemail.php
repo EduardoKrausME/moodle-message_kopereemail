@@ -25,6 +25,7 @@
 use core_message\api;
 use message_kopereemail\template_processor;
 
+// phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
 require_once("{$CFG->dirroot}/message/output/lib.php");
 
 /**

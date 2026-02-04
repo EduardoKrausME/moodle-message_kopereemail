@@ -27,11 +27,10 @@ namespace message_kopereemail\form;
 use coding_exception;
 use moodleform;
 
+// phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
 require_once("{$CFG->libdir}/formslib.php");
 
 /**
- * phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
- *
  * Form to create/edit a provider custom template.
  */
 class edit_form extends moodleform {
