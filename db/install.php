@@ -23,6 +23,7 @@
  */
 
 use message_kopereemail\install\config_migrator;
+use message_kopereemail\install\file_template;
 
 /**
  * Install the Kopere Email message processor and migrate configs from email.
@@ -43,12 +44,7 @@ function xmldb_message_kopereemail_install() {
     $provider->name = "kopereemail";
     $DB->insert_record("message_processors", $provider);
 
-    $a = [
-        "messagepreferences" => get_string("messagepreferences", "message"),
-        "notificationpreferencesurl" => (new moodle_url("/message/notificationpreferences.php"))->out(false),
-        "primarycolor" => get_config("theme_boost", "brandcolor"),
-    ];
-    $value = get_string("settings_wrapper_default", "message_kopereemail", $a);
+    $value = file_template::wrapperhtml("default");
     set_config("wrapperhtml", $value, "message_kopereemail");
 
     // Disable legacy email processor if the field exists (it does in modern Moodle).

@@ -29,7 +29,7 @@ $string['action_delete'] = 'Delete custom message';
 $string['action_edit'] = 'Edit custom message';
 $string['action_export'] = 'Export JSON';
 $string['action_import'] = 'Import JSON';
-$string['action_preview'] = 'Template preview';
+$string['action_preview'] = 'Templates';
 $string['action_preview_click'] = 'Click here to receive an email with this Template test';
 $string['action_preview_success'] = 'Email sent successfully. Please check your inbox or spam folder.';
 $string['export_filename_prefix'] = 'kopereemail-templates';
@@ -52,6 +52,7 @@ $string['placeholders_desc'] = 'You can use Mustache placeholders in the message
 $string['placeholders_fullmessage_desc'] = 'Plain-text message.';
 $string['placeholders_fullmessagehtml_desc'] = 'HTML message (use triple braces).';
 $string['placeholders_site_fullname_desc'] = 'Full site name (<code>{$SITE->fullname}</code>).';
+$string['placeholders_site_logourl_desc'] = 'Logo site  (<img src="{$a->logo_url}" style="max-width:70px;max-height:70px;">).';
 $string['placeholders_site_shortname_desc'] = 'Short site name (<code>{$SITE->shortname}</code>).';
 $string['placeholders_site_url_desc'] = 'Site URL (<code>{$CFG->wwwroot}</code>).';
 $string['placeholders_subject_desc'] = 'Current notification subject.';
@@ -71,80 +72,14 @@ $string['privacy:metadata:userfrom'] = 'Email sender.';
 $string['settings_customtemplates'] = 'Custom messages per provider';
 $string['settings_customtemplates_desc'] = 'Create/edit a custom message for each notification provider.';
 $string['settings_wrapper'] = 'Email base template (wrapper)';
-$string['settings_wrapper_default'] = '
-<table style="background:{$a->primarycolor}26;" role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
-    <tbody>
-    <tr>
-        <td style="padding:24px 12px;" align="center">
-            <table style="width:600px;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(18, 38, 63, 0.08);"
-                   role="presentation" border="0" width="600" cellspacing="0" cellpadding="0">
-                <tbody>
-                <tr>
-                    <td style="height:6px;background:{$a->primarycolor};line-height:6px;font-size:0;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="padding:24px 28px 12px 28px;background:#ffffff;">
-                        <table role="presentation" border="0" width="100%" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td style="vertical-align:middle;" align="left">
-                                    <div style="font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;color:#121826;">
-                                        {{subject}}
-                                    </div>
-                                    <div style="margin-top:6px;font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#6b7280;">
-                                        {{site.shortname}}
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding:0 28px;">
-                        <div style="height:1px;background:#eef2f7;line-height:1px;font-size:0;">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding:20px 28px 10px 28px;">
-                        <div style="font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.6;color:#111827;">
-                            {{{fullmessagehtml}}}
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding:18px 28px;background:#fbfcff;">
-                        <table role="presentation" border="0" width="100%"
-                               cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td style="vertical-align:top;" align="left">
-                                    <div style="font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#6b7280;line-height:1.6;">
-                                        {{site.fullname}}
-                                    </div>
-                                </td>
-                                <td style="vertical-align:top;" align="right">
-                                    <div style="font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#6b7280;line-height:1.6;">
-                                        <a style="color:{$a->primarycolor};text-decoration:none;"
-                                           href="{$a->notificationpreferencesurl}">{$a->messagepreferences}</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>';
 $string['settings_wrapper_desc'] = 'This HTML is formatted in Mustache and will be applied as the message template to be sent to the student. The HTML content should be inserted where {{{fullmessagehtml}}} is.';
 $string['table_actions'] = 'Actions';
 $string['table_component'] = 'Component';
 $string['table_name'] = 'Name';
 $string['table_provider'] = 'Provider';
+$string['template'] = 'Template';
+$string['template_changue'] = 'I want to use this template as the default for Kopere Mail';
+$string['template_changued'] = 'Template updated successfully';
 $string['template_delete_confirm'] = 'Are you sure you want to delete the custom message for this provider?';
 $string['template_delete_title'] = 'Delete custom message';
 $string['template_deleted'] = 'Custom message deleted.';
@@ -153,6 +88,8 @@ $string['template_edit_provider'] = 'Provider';
 $string['template_edit_save'] = 'Save';
 $string['template_edit_subject'] = 'Subject (optional)';
 $string['template_edit_title'] = 'Custom message';
+$string['template_preview'] = 'Preview template';
 $string['template_saved'] = 'Custom message saved.';
+$string['templates_other'] = 'Other templates';
 $string['templates_transfer_desc'] = 'Use this service to migrate settings between environments (e.g., staging -> production).';
 $string['templates_transfer_title'] = 'Export / Import settings';

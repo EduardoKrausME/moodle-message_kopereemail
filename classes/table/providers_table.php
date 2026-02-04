@@ -89,7 +89,7 @@ class providers_table extends sql_table {
         $options = ["component" => $row->component, "name" => $row->name];
         $editurl = new moodle_url("/message/output/kopereemail/edit.php", $options);
         $deleteurl = new moodle_url("/message/output/kopereemail/delete.php", $options);
-        $testurl = new moodle_url("/message/output/kopereemail/test-template.php", $options);
+        $testurl = new moodle_url("/message/output/kopereemail/template-test.php", $options);
 
         if (!empty($row->templateid)) {
             $title = get_string("action_edit", "message_kopereemail");
@@ -98,7 +98,7 @@ class providers_table extends sql_table {
             $title = get_string("action_delete", "message_kopereemail");
             $del = html_writer::link($deleteurl, $title, ["class" => "btn btn-sm btn-danger"]);
 
-            $title = get_string("action_preview", "message_kopereemail");
+            $title = get_string("action_preview_click", "message_kopereemail");
             $test = html_writer::link($testurl, $title, ["class" => "btn btn-sm btn-success"]);
 
             return $edit . $del . $test;

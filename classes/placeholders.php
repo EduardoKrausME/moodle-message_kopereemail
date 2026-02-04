@@ -41,12 +41,13 @@ class placeholders {
      * @return array
      */
     public static function get_definitions() {
-        global $SITE, $CFG;
+        global $SITE, $CFG, $OUTPUT;
 
         $a = [
             "site_fullname" => $SITE->fullname,
             "site_shortname" => $SITE->shortname,
             "cfg_wwwroot" => $CFG->wwwroot,
+            "logo_url" => $OUTPUT->get_logo_url(),
         ];
 
         return [
@@ -75,19 +76,23 @@ class placeholders {
                 "desc" => get_string("placeholders_site_url_desc", "message_kopereemail", $a),
             ],
             [
+                "key" => "{{site.logourl}} / {{site.compact_logourl}}",
+                "desc" => get_string("placeholders_site_logourl_desc", "message_kopereemail", $a),
+            ],
+            [
                 "key" => "{{course.url}}",
                 "desc" => get_string("placeholders_course_url_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{course.fullname}} / {{course.shortname}} / {{course.id}}",
+                "key" => "{{course.id}} / {{course.fullname}} / {{course.shortname}}",
                 "desc" => get_string("placeholders_course_data_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{userto.firstname}} / {{userto.lastname}} / {{userto.email}}",
+                "key" => "{{userto.id}} / {{userto.fullname}} / {{userto.firstname}} / {{userto.lastname}} / {{userto.email}} / {{userto.profileurl}}",
                 "desc" => get_string("placeholders_userto_data_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{userfrom.firstname}} / {{userfrom.lastname}} / {{userfrom.email}}",
+                "key" => "{{userfrom.id}} / {{userfrom.fullname}} / {{userfrom.firstname}} / {{userfrom.lastname}} / {{userfrom.email}} / {{userfrom.profileurl}}",
                 "desc" => get_string("placeholders_userfrom_data_desc", "message_kopereemail"),
             ],
             [
@@ -106,10 +111,12 @@ class placeholders {
      * @throws moodle_exception
      */
     public static function build_context(stdClass $eventdata) {
-        global $SITE;
+        global $SITE, $OUTPUT;
 
         $contextmustache = (object) [
             "course" => [],
+            "userto" => [],
+            "userfrom" => [],
         ];
 
         $contextmustache->subject = $eventdata->subject ?? "";
@@ -120,10 +127,18 @@ class placeholders {
             "fullname" => $SITE->fullname ?? "",
             "shortname" => $SITE->shortname ?? "",
             "url" => (new moodle_url("/"))->out(false),
+            "logourl" => $OUTPUT->get_logo_url(),
+            "compact_logourl"=> $OUTPUT->get_compact_logo_url(),
         ];
 
-        $contextmustache->userto = $eventdata->userto ?? (object) [];
-        $contextmustache->userfrom = $eventdata->userfrom ?? (object) [];
+        if ($eventdata->userto) {
+            $contextmustache->userto = $eventdata->userto;
+            $contextmustache->userto->fullname = fullname($contextmustache->userto);
+        }
+        if ($eventdata->userfrom) {
+            $contextmustache->userfrom = $eventdata->userfrom;
+            $contextmustache->userfrom->fullname = fullname($contextmustache->userfrom);
+        }
 
         $contextmustache->dates = (object) [
             "now" => userdate(time()),

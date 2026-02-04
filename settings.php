@@ -22,6 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use message_kopereemail\install\file_template;
 use message_kopereemail\output\settings_renderer;
 use message_kopereemail\placeholders;
 
@@ -39,13 +40,23 @@ if ($ADMIN->fulltree) {
     );
     $settings->add($setting);
 
-    $testurl = new moodle_url("/message/output/kopereemail/test-template.php");
-    $title = get_string("action_preview_click", "message_kopereemail");
-    $test = html_writer::link($testurl, $title, ["class" => "btn btn-sm btn-warning"]);
+    $contextmustache = [
+        "testurl" => new moodle_url("/message/output/kopereemail/template-test.php"),
+        'templates' => array_map(
+            function(string $templatename): array {
+                $p = ['template' => $templatename];
+                return [
+                    'name' => $templatename,
+                    'previewurl' => (new moodle_url('/message/output/kopereemail/template-preview.php', $p)),
+                ];
+            },
+            file_template::listall()
+        ),
+    ];
     $setting = new admin_setting_heading(
-        "message_kopereemail/test_template",
+        "message_kopereemail/template_test",
         get_string("action_preview", "message_kopereemail"),
-        $test
+        $OUTPUT->render_from_template("message_kopereemail/template_test", $contextmustache)
     );
     $settings->add($setting);
 
