@@ -29,6 +29,8 @@ use core\exception\moodle_exception;
 use message_kopereemail\table\providers_table;
 
 /**
+ * phpcs:disable moodle.PHP.ForbiddenGlobalUse.BadGlobal
+ *
  * Helpers to render dynamic content inside admin settings.
  */
 class settings_renderer {
