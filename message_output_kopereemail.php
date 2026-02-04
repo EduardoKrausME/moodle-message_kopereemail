@@ -150,7 +150,7 @@ class message_output_kopereemail extends message_output {
      *
      * @param array $preferences An array of user preferences
      */
-    function config_form($preferences) {
+    public function config_form($preferences) {
         return null;
     }
 
