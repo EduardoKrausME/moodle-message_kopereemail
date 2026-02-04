@@ -34,7 +34,7 @@ require_sesskey();
 $payload = manager::build_payload();
 $json = manager::encode_json($payload);
 
-$filename =  "kopereemail-config-" . date("Ymd-His") . ".json";
+$filename = "kopereemail-config-" . date("Ymd-His") . ".json";
 
 header("Content-Type: application/json; charset=utf-8");
 header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
