@@ -26,9 +26,8 @@ namespace message_kopereemail\form;
 
 use context_user;
 
-defined("MOODLE_INTERNAL") || die();
-
-require_once($GLOBALS["CFG"]->libdir . "/formslib.php");
+// phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
+require_once("{$CFG->libdir}/formslib.php");
 
 /**
  * Form for importing templates JSON.
