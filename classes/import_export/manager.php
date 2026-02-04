@@ -41,18 +41,18 @@ class manager {
     public static function build_payload() {
         global $DB;
 
-        $wrapper = (string)get_config("message_kopereemail", "wrapperhtml");
+        $wrapper = get_config("message_kopereemail", "wrapperhtml");
 
         $templates = $DB->get_records("message_kopereemail_template", null, "component ASC, name ASC");
         $items = [];
 
         foreach ($templates as $t) {
             $items[] = [
-                "component" => (string)$t->component,
-                "name" => (string)$t->name,
-                "subject" => (string)$t->subject,
-                "bodyhtml" => (string)$t->bodyhtml,
-                "bodyhtmlformat" => (int)$t->bodyhtmlformat,
+                "component" => $t->component,
+                "name" => $t->name,
+                "subject" => $t->subject,
+                "bodyhtml" => $t->bodyhtml,
+                "bodyhtmlformat" => (int) $t->bodyhtmlformat,
             ];
         }
 
@@ -120,13 +120,13 @@ class manager {
         $wrapperupdated = 0;
 
         if ($importwrapper) {
-            set_config("wrapperhtml", (string)$payload["wrapperhtml"], "message_kopereemail");
+            set_config("wrapperhtml", $payload["wrapperhtml"], "message_kopereemail");
             $wrapperupdated = 1;
         }
 
         foreach ($payload["templates"] as $t) {
-            $component = (string)$t["component"];
-            $name = (string)$t["name"];
+            $component = $t["component"];
+            $name = $t["name"];
 
             $existing = template_repository::get_by_provider($component, $name);
 
@@ -138,10 +138,10 @@ class manager {
             $data = new \stdClass();
             $data->component = $component;
             $data->name = $name;
-            $data->subject = isset($t["subject"]) ? (string)$t["subject"] : "";
+            $data->subject = isset($t["subject"]) ? $t["subject"] : "";
             $data->bodyhtml = [
-                "text" => (string)$t["bodyhtml"],
-                "format" => isset($t["bodyhtmlformat"]) ? (int)$t["bodyhtmlformat"] : 1,
+                "text" => $t["bodyhtml"],
+                "format" => isset($t["bodyhtmlformat"]) ? (int) $t["bodyhtmlformat"] : 1,
             ];
 
             template_repository::upsert_from_form($data, $USER->id);
