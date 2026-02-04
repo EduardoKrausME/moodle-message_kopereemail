@@ -1,0 +1,18 @@
+.path-message-output-kopereemail #fitem_id_subject,
+.path-message-output-kopereemail #fitem_id_bodyhtml,
+.path-message-output-kopereemail #fgroup_id_buttonar {
+    display: flex;
+    flex-direction: column;
+}
+
+.path-message-output-kopereemail #fitem_id_subject > div,
+.path-message-output-kopereemail #fitem_id_bodyhtml > div,
+.path-message-output-kopereemail #fgroup_id_buttonar > div {
+    width: 100%;
+}
+
+.path-message-output-kopereemail #fitem_id_subject input,
+.path-message-output-kopereemail #fitem_id_bodyhtml input,
+.path-message-output-kopereemail #fgroup_id_buttonar input {
+    width: 100%;
+}

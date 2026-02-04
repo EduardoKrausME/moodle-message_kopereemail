@@ -1,0 +1,14 @@
+.path-message-output-kopereemail {
+    #fitem_id_subject,
+    #fitem_id_bodyhtml,
+    #fgroup_id_buttonar {
+        display: flex;
+        flex-direction: column;
+        > div {
+            width: 100%;
+        }
+        input {
+            width: 100%;
+        }
+    }
+}
