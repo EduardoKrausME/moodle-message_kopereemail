@@ -27,6 +27,7 @@ namespace message_kopereemail\output;
 use coding_exception;
 use core\exception\moodle_exception;
 use message_kopereemail\table\providers_table;
+use moodle_url;
 
 /**
  * phpcs:disable moodle.PHP.ForbiddenGlobalUse.BadGlobal

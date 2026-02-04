@@ -29,14 +29,24 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
 
-    $description = get_string("settings_wrapper_desc", "message_kopereemail") .
-        $OUTPUT->render_from_template("message_kopereemail/placeholders", [
-            "placeholders" => placeholders::get_definitions(),
-        ]);
+    $contextmustache = ["placeholders" => placeholders::get_definitions()];
+    $description = $OUTPUT->render_from_template("message_kopereemail/placeholders", $contextmustache);
+
     $setting = new admin_setting_confightmleditor(
         "message_kopereemail/wrapperhtml",
         get_string("settings_wrapper", "message_kopereemail"),
         $description, "", PARAM_RAW, 60, 18
+    );
+    $settings->add($setting);
+
+    $contextmustache = [
+        "exporturl" => (new moodle_url("/message/output/kopereemail/export.php", ["sesskey" => sesskey()]))->out(false),
+        "importurl" => (new moodle_url("/message/output/kopereemail/import.php"))->out(false),
+    ];
+    $setting = new admin_setting_heading(
+        "message_kopereemail/export_import",
+        get_string("templates_transfer_title", "message_kopereemail"),
+        $OUTPUT->render_from_template("message_kopereemail/admin_providers_export_import", $contextmustache)
     );
     $settings->add($setting);
 
