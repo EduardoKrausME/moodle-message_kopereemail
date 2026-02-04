@@ -47,12 +47,9 @@ $PAGE->set_heading(get_string("template_delete_title", "message_kopereemail"));
 if ($confirm && confirm_sesskey()) {
     template_repository::delete_by_provider($component, $name);
 
-    redirect(
-        new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]),
-        get_string("template_deleted", "message_kopereemail"),
-        null,
-        notification::NOTIFY_SUCCESS
-    );
+    $url = new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]);
+    $message = get_string("template_deleted", "message_kopereemail");
+    redirect($url, $message, null, notification::NOTIFY_SUCCESS);
 }
 
 echo $OUTPUT->header();

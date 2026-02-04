@@ -55,33 +55,21 @@ if ($data = $mform->get_data()) {
     $file = reset($files);
 
     if (!$file) {
-        redirect(
-            $PAGE->url,
-            get_string("import_invalid_payload", "message_kopereemail"),
-            null,
-            notification::NOTIFY_ERROR
-        );
+        $message = get_string("import_invalid_payload", "message_kopereemail");
+        redirect($PAGE->url, $message, null, notification::NOTIFY_ERROR);
     }
 
     $content = $file->get_content();
     $payload = json_decode($content, true);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
-        redirect(
-            $PAGE->url,
-            get_string("import_invalid_json", "message_kopereemail"),
-            null,
-            notification::NOTIFY_ERROR
-        );
+        $message = get_string("import_invalid_json", "message_kopereemail");
+        redirect($PAGE->url, $message, null, notification::NOTIFY_ERROR);
     }
 
     if (!manager::validate_payload($payload)) {
-        redirect(
-            $PAGE->url,
-            get_string("import_invalid_payload", "message_kopereemail"),
-            null,
-            notification::NOTIFY_ERROR
-        );
+        $message = get_string("import_invalid_payload", "message_kopereemail");
+        redirect($PAGE->url, $message, null, notification::NOTIFY_ERROR);
     }
 
     $result = manager::import_payload($payload, [
@@ -95,12 +83,9 @@ if ($data = $mform->get_data()) {
         "wrapper" => !empty($result["wrapperupdated"]) ? "sim" : "não",
     ];
 
-    redirect(
-        new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]),
-        get_string("import_success", "message_kopereemail", $a),
-        null,
-        notification::NOTIFY_SUCCESS
-    );
+    $url = new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]);
+    $message = get_string("import_success", "message_kopereemail", $a);
+    redirect($url, $message, null, notification::NOTIFY_SUCCESS);
 }
 
 echo $OUTPUT->header();

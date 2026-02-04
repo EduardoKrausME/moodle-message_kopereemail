@@ -67,12 +67,9 @@ if ($mform->is_cancelled()) {
 if ($data = $mform->get_data()) {
     template_repository::upsert_from_form($data);
 
-    redirect(
-        new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]),
-        get_string("template_saved", "message_kopereemail"),
-        null,
-        notification::NOTIFY_SUCCESS
-    );
+    $url = new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]);
+    $message = get_string("template_saved", "message_kopereemail");
+    redirect($url, $message, null, notification::NOTIFY_SUCCESS);
 }
 
 $formhtml = $mform->render();

@@ -64,9 +64,6 @@ if ($courseimage = course_summary_exporter::get_course_image($course)) {
 }
 message_send($eventdata);
 
-redirect(
-    new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]),
-    get_string("action_preview_success", "message_kopereemail"),
-    null,
-    notification::NOTIFY_SUCCESS
-);
+$url = new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]);
+$message = get_string("action_preview_success", "message_kopereemail");
+redirect($url, $message, null, notification::NOTIFY_SUCCESS);
