@@ -76,7 +76,10 @@ class placeholders {
                 "desc" => get_string("placeholders_site_url_desc", "message_kopereemail", $a),
             ],
             [
-                "key" => "{{site.logourl}} / {{site.compact_logourl}}",
+                "key" => implode(" / ", [
+                    "{{site.logourl}}",
+                    "{{site.compact_logourl}}",
+                ]),
                 "desc" => get_string("placeholders_site_logourl_desc", "message_kopereemail", $a),
             ],
             [
@@ -84,15 +87,33 @@ class placeholders {
                 "desc" => get_string("placeholders_course_url_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{course.id}} / {{course.fullname}} / {{course.shortname}}",
+                "key" => implode(" / ", [
+                    "{{course.id}}",
+                    "{{course.fullname}}",
+                    "{{course.shortname}}",
+                ]),
                 "desc" => get_string("placeholders_course_data_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{userto.id}} / {{userto.fullname}} / {{userto.firstname}} / {{userto.lastname}} / {{userto.email}} / {{userto.profileurl}}",
+                "key" => implode(" / ", [
+                    "{{userto.id}}",
+                    "{{userto.fullname}}",
+                    "{{userto.firstname}}",
+                    "{{userto.lastname}}",
+                    "{{userto.email}}",
+                    "{{userto.profileurl}}",
+                ]),
                 "desc" => get_string("placeholders_userto_data_desc", "message_kopereemail"),
             ],
             [
-                "key" => "{{userfrom.id}} / {{userfrom.fullname}} / {{userfrom.firstname}} / {{userfrom.lastname}} / {{userfrom.email}} / {{userfrom.profileurl}}",
+                "key" => implode(" / ", [
+                    "{{userfrom.id}}",
+                    "{{userfrom.fullname}}",
+                    "{{userfrom.firstname}}",
+                    "{{userfrom.lastname}}",
+                    "{{userfrom.email}}",
+                    "{{userfrom.profileurl}}",
+                ]),
                 "desc" => get_string("placeholders_userfrom_data_desc", "message_kopereemail"),
             ],
             [
