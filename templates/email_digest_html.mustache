@@ -21,16 +21,19 @@
     {
         "conversations": [
             {
+                "grouppictureurl" => "https://mymoodle/image.png",
                 "groupname": "Study Group",
                 "coursename": "Math 101",
                 "numberofunreadmessages": 3,
                 "messages": [
                     {
+                        "userpictureurl" => "https://mymoodle/image.png",
                         "userfullname": "Anna Souza",
                         "timesent": "Feb 4, 2026 09:12",
                         "message": "Does anyone understand exercise set 3?"
                     },
                     {
+                        "userpictureurl" => "https://mymoodle/image.png",
                         "userfullname": "Bruno Lima",
                         "timesent": "Feb 4, 2026 09:18",
                         "message": "Yes! Question 2 is just applying the formula."
@@ -57,7 +60,7 @@
     {{#conversations}}
         <div style="border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
             <div style="display:flex; align-items:center; gap:10px;">
-                <img src="{{grouppictureurl}}" width="40" height="40" style="border-radius: 8px;" alt="">
+                <img src="{{grouppictureurl}}" width="40" height="40" style="border-radius: 8px;" alt="group picture url">
                 <div>
                     <div style="font-weight: 700;">{{groupname}}</div>
                     <div style="color:#6c757d; font-size:12px;">{{coursename}} • {{numberofunreadmessages}}{{#str}}messages, message_kopereemail{{/str}}
@@ -68,7 +71,7 @@
             <div style="margin-top: 12px;">
                 {{#messages}}
                     <div style="display:flex; gap:10px; padding:10px 0; border-top:1px solid #f1f3f5;">
-                        <img src="{{userpictureurl}}" width="32" height="32" style="border-radius:999px;" alt="">
+                        <img src="{{userpictureurl}}" width="32" height="32" style="border-radius:999px;" alt="user picture url">
                         <div style="flex:1;">
                             <div style="display:flex; justify-content:space-between; gap:10px;">
                                 <div style="font-weight:700;">{{userfullname}}</div>
