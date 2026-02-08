@@ -62,6 +62,7 @@ $string['placeholders_userto_data_desc'] = 'Recipient data.';
 $string['pluginname'] = 'Kopere Email';
 $string['privacy:metadata:attachment'] = 'File attached in the filesystem.';
 $string['privacy:metadata:attachname'] = 'Attachment name.';
+$string['privacy:metadata:externalpurpose'] = 'External purpose';
 $string['privacy:metadata:fullmessage'] = 'Plain-text message.';
 $string['privacy:metadata:fullmessagehtml'] = 'HTML message.';
 $string['privacy:metadata:recipient'] = 'Email recipient.';
