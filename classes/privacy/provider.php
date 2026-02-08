@@ -37,7 +37,7 @@ class provider implements \core_privacy\local\metadata\provider {
      * @param collection $collection
      * @return collection
      */
-    public static function get_metadata(collection $collection) {
+    public static function get_metadata(collection $collection): collection {
         $collection->link_external_location("smtp", [
             "recipient" => "privacy:metadata:recipient",
             "userfrom" => "privacy:metadata:userfrom",
