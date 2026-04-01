@@ -26,37 +26,60 @@ namespace message_kopereemail\output;
 
 use coding_exception;
 use core\exception\moodle_exception;
-use message_kopereemail\table\providers_table;
+use message_kopereemail\provider_helper;
 use moodle_url;
 
 /**
- * phpcs:disable moodle.PHP.ForbiddenGlobalUse.BadGlobal
- *
  * Helpers to render dynamic content inside admin settings.
  */
 class settings_renderer {
 
     /**
-     * Render the providers table section for settings.php.
+     * Render the providers section for settings.php.
      *
-     * @return string HTML.
+     * @return string
      * @throws coding_exception
      * @throws moodle_exception
      */
-    public static function render_providers_section() {
-        global $CFG, $PAGE, $OUTPUT;
+    public static function render_providers_section(): string {
+        global $DB, $OUTPUT;
 
-        require_once("{$CFG->libdir}/tablelib.php");
+        $sql = "SELECT mp.component,
+                       mp.name,
+                       mkt.id AS templateid
+                  FROM {message_providers} mp
+             LEFT JOIN {message_kopereemail_template} mkt
+                    ON mkt.component = mp.component
+                   AND mkt.name = mp.name
+              ORDER BY mp.component ASC, mp.name ASC";
 
-        $table = new providers_table("message_kopereemail_providers");
-        $table->define_baseurl($PAGE->url);
+        $records = $DB->get_records_sql($sql);
 
-        ob_start();
-        $table->out(200, true);
-        $tablehtml = ob_get_clean();
+        $providers = [];
+        foreach ($records as $record) {
+            $params = [
+                "component" => $record->component,
+                "name" => $record->name,
+            ];
 
-        return $OUTPUT->render_from_template("message_kopereemail/admin_providers", [
-            "tablehtml" => $tablehtml,
-        ]);
+            $hascustomtemplate = !empty($record->templateid);
+
+            $providers[] = [
+                "providername" => provider_helper::get_display_name($record->component, $record->name),
+                "component" => $record->component,
+                "name" => $record->name,
+                "hascustomtemplate" => $hascustomtemplate,
+                "editurl" => (new moodle_url("/message/output/kopereemail/edit.php", $params))->out(false),
+                "deleteurl" => (new moodle_url("/message/output/kopereemail/delete.php", $params))->out(false),
+                "previewurl" => (new moodle_url("/message/output/kopereemail/template-test.php", $params))->out(false),
+            ];
+        }
+
+        $context = [
+            "providers" => $providers,
+            "hasproviders" => !empty($providers),
+        ];
+
+        return $OUTPUT->render_from_template("message_kopereemail/admin_providers", $context);
     }
 }
