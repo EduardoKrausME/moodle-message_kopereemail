@@ -24,12 +24,13 @@
 
 namespace message_kopereemail\output;
 
-use coding_exception;
-use core\exception\moodle_exception;
+use Exception;
 use message_kopereemail\provider_helper;
 use moodle_url;
 
 /**
+ * phpcs:disable moodle.PHP.ForbiddenGlobalUse.BadGlobal
+ *
  * Helpers to render dynamic content inside admin settings.
  */
 class settings_renderer {
@@ -38,19 +39,15 @@ class settings_renderer {
      * Render the providers section for settings.php.
      *
      * @return string
-     * @throws coding_exception
-     * @throws moodle_exception
+     * @throws Exception
      */
     public static function render_providers_section(): string {
         global $DB, $OUTPUT;
 
-        $sql = "SELECT mp.component,
-                       mp.name,
-                       mkt.id AS templateid
-                  FROM {message_providers} mp
-             LEFT JOIN {message_kopereemail_template} mkt
-                    ON mkt.component = mp.component
-                   AND mkt.name = mp.name
+        $sql = "SELECT CONCAT(mp.id,'-',mkt.id,mp.component) AS id, mp.component, mp.name, mkt.id AS templateid
+                  FROM {message_providers}             mp
+             LEFT JOIN {message_kopereemail_template} mkt ON mkt.component = mp.component
+                 WHERE mkt.name = mp.name
               ORDER BY mp.component ASC, mp.name ASC";
 
         $records = $DB->get_records_sql($sql);
@@ -69,9 +66,9 @@ class settings_renderer {
                 "component" => $record->component,
                 "name" => $record->name,
                 "hascustomtemplate" => $hascustomtemplate,
-                "editurl" => (new moodle_url("/message/output/kopereemail/edit.php", $params))->out(false),
-                "deleteurl" => (new moodle_url("/message/output/kopereemail/delete.php", $params))->out(false),
-                "previewurl" => (new moodle_url("/message/output/kopereemail/template-test.php", $params))->out(false),
+                "editurl" => new moodle_url("/message/output/kopereemail/edit.php", $params),
+                "deleteurl" => new moodle_url("/message/output/kopereemail/delete.php", $params),
+                "previewurl" => new moodle_url("/message/output/kopereemail/template-test.php", $params),
             ];
         }
 

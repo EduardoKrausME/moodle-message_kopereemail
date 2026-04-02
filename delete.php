@@ -56,13 +56,13 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->render_from_template("message_kopereemail/template_delete", [
     "providerlabel" => provider_helper::get_display_name($component, $name),
-    "yesurl" => (new moodle_url("/message/output/kopereemail/delete.php", [
+    "yesurl" => new moodle_url("/message/output/kopereemail/delete.php", [
         "component" => $component,
         "name" => $name,
         "confirm" => 1,
         "sesskey" => sesskey(),
-    ]))->out(false),
-    "nourl" => (new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]))->out(false),
+    ]),
+    "nourl" => new moodle_url("/admin/settings.php", ["section" => "messagesettingkopereemail"]),
 ]);
 
 echo $OUTPUT->footer();

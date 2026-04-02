@@ -61,8 +61,8 @@ if ($ADMIN->fulltree) {
     $settings->add($setting);
 
     $contextmustache = [
-        "exporturl" => (new moodle_url("/message/output/kopereemail/export.php", ["sesskey" => sesskey()]))->out(false),
-        "importurl" => (new moodle_url("/message/output/kopereemail/import.php"))->out(false),
+        "exporturl" => new moodle_url("/message/output/kopereemail/export.php", ["sesskey" => sesskey()]),
+        "importurl" => new moodle_url("/message/output/kopereemail/import.php"),
     ];
     $setting = new admin_setting_heading(
         "message_kopereemail/export_import",

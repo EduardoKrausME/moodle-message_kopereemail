@@ -147,7 +147,7 @@ class placeholders {
         $contextmustache->site = (object) [
             "fullname" => $SITE->fullname ?? "",
             "shortname" => $SITE->shortname ?? "",
-            "url" => (new moodle_url("/"))->out(false),
+            "url" => new moodle_url("/"),
             "logourl" => $OUTPUT->get_logo_url(),
             "compact_logourl" => $OUTPUT->get_compact_logo_url(),
         ];
@@ -175,7 +175,7 @@ class placeholders {
                     "fullname" => format_string($course->fullname, true, ['context' => $context]),
                     "shortname" => $course->shortname,
                     "summary" => format_string($course->summary, true, ['context' => $context]),
-                    "url" => (new moodle_url("/course/view.php", ["id" => $course->id]))->out(false),
+                    "url" => new moodle_url("/course/view.php", ["id" => $course->id]),
                 ];
             }
         }
