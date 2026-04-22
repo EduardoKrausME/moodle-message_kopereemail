@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026040200;
-$plugin->release = "1.0.5";
+$plugin->version = 2026042200;
+$plugin->release = "1.0.6";
 $plugin->component = "message_kopereemail";
 $plugin->requires = 2022041900;
 $plugin->maturity = MATURITY_STABLE;
