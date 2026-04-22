@@ -27,13 +27,12 @@ use message_kopereemail\install\file_template;
 
 require_once(__DIR__ . "/../../../config.php");
 
-$template = required_param("template", PARAM_TEXT);
+$template = required_param("template", PARAM_ALPHANUMEXT);
 $component = optional_param("component", "moodle", PARAM_TEXT);
 $name = optional_param("name", "coursecompleted", PARAM_TEXT);
 
-require_login();
+require_admin();
 $context = context_system::instance();
-require_capability("moodle/site:config", $context);
 
 $params = ["template" => $template, "component" => $component, "name" => $name];
 $url = new moodle_url("/message/output/kopereemail/template-preview.php", $params);
