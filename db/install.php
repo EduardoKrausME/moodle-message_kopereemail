@@ -38,7 +38,7 @@ use message_kopereemail\install\file_template;
  * @throws coding_exception
  */
 function xmldb_message_kopereemail_install() {
-    global $DB, $SITE;
+    global $DB;
 
     $provider = new stdClass();
     $provider->name = "kopereemail";

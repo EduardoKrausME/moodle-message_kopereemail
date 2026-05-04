@@ -15,17 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details for the message_kopereemail plugin.
+ * Upgrade code for kopereemail message processor
  *
  * @package   message_kopereemail
  * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
-
-$plugin->version = 2026050400;
-$plugin->release = "1.0.7";
-$plugin->component = "message_kopereemail";
-$plugin->requires = 2022041900;
-$plugin->maturity = MATURITY_STABLE;
+/**
+ * Upgrade code for the kopereemail message processor
+ *
+ * @param int $oldversion The version that we are upgrading from
+ */
+function xmldb_message_kopereemail_upgrade($oldversion) {
+    return true;
+}
