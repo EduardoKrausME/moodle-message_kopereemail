@@ -1,0 +1,23 @@
+# (RFC §4.1). Authors update their listing with an ordinary commit; camp
+# ingests and hash-pins it at each tagged release. Listing for message_kopereemail.
+
+name: "Kopere Email"
+summary: "Email messaging channel with additional communication features."
+description: |
+  Email messaging channel with additional communication features.
+
+  message_kopereemail is a Moodle message output based on message_email , built to deliver consistent, branded emails - while still letting you create fully custom HTML per notification type.
+
+  Key capabilities:
+  - If fullmessagehtml exists ' apply wrapper.
+  - If it doesn't ' create simple HTML from text, then apply wrapper (if configured).
+  - Copies existing config from message/email into message_kopereemail .
+
+  Supported Moodle versions in the supplied plugin list: 3.9 - 5.0.
+
+labels:
+  - fully-free
+category: "integrations"
+links:
+  docs: https://github.com/EduardoKrausME/moodle-message_kopereemail#readme
+  issues: https://github.com/EduardoKrausME/moodle-message_kopereemail/issues
