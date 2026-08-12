@@ -30,6 +30,34 @@ namespace message_kopereemail;
 class email_formatter {
 
     /**
+     * Convert a Moodle formatted message to HTML.
+     *
+     * HTML is preserved as provided. Moodle and Markdown formats are converted
+     * using Moodle's formatter. Plain text remains escaped before line breaks
+     * are converted, so it cannot unexpectedly inject HTML into the email.
+     *
+     * @param string $message
+     * @param int $format
+     * @return string
+     */
+    public static function to_html($message, $format = FORMAT_PLAIN) {
+        $message = trim($message);
+        if ($message === "") {
+            return "";
+        }
+
+        if ($format === FORMAT_HTML) {
+            return $message;
+        }
+
+        if ($format === FORMAT_MOODLE || $format === FORMAT_MARKDOWN) {
+            return format_text($message, $format, ["filter" => false]);
+        }
+
+        return self::plain_to_html($message);
+    }
+
+    /**
      * Convert plain text to a simple HTML body.
      *
      * @param string $plain

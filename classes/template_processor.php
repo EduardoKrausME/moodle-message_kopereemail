@@ -92,7 +92,11 @@ class template_processor {
         }
 
         if (!empty($eventdata->fullmessage)) {
-            $eventdata->fullmessagehtml = email_formatter::plain_to_html($eventdata->fullmessage);
+            $format = isset($eventdata->fullmessageformat)
+                ? (int) $eventdata->fullmessageformat
+                : FORMAT_PLAIN;
+
+            $eventdata->fullmessagehtml = email_formatter::to_html($eventdata->fullmessage, $format);
         }
 
         return $eventdata;
