@@ -44,10 +44,10 @@ class settings_renderer {
     public static function render_providers_section(): string {
         global $DB, $OUTPUT;
 
-        $sql = "SELECT CONCAT(mp.id,'-',mkt.id,mp.component) AS id, mp.component, mp.name, mkt.id AS templateid
+        $sql = "SELECT mp.id, mp.component, mp.name, mkt.id AS templateid
                   FROM {message_providers}             mp
              LEFT JOIN {message_kopereemail_template} mkt ON mkt.component = mp.component
-                 WHERE mkt.name = mp.name
+                                                           AND mkt.name = mp.name
               ORDER BY mp.component ASC, mp.name ASC";
 
         $records = $DB->get_records_sql($sql);
