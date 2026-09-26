@@ -57,19 +57,19 @@
                         <td>
                             <div class="message-kopereemail-admin-providers__actions">
                                 {{#hascustomtemplate}}
-                                    <a href="{{editurl}}" class="btn btn-sm btn-info">
+                                    <a href="{{{editurl}}}" class="btn btn-sm btn-info">
                                         {{#str}}action_edit, message_kopereemail{{/str}}
                                     </a>
-                                    <a href="{{deleteurl}}" class="btn btn-sm btn-danger">
+                                    <a href="{{{deleteurl}}}" class="btn btn-sm btn-danger">
                                         {{#str}}action_delete, message_kopereemail{{/str}}
                                     </a>
-                                    <a href="{{previewurl}}" class="btn btn-sm btn-success">
+                                    <a href="{{{previewurl}}}" class="btn btn-sm btn-success">
                                         {{#str}}action_preview_click, message_kopereemail{{/str}}
                                     </a>
                                 {{/hascustomtemplate}}
 
                                 {{^hascustomtemplate}}
-                                    <a href="{{editurl}}" class="btn btn-sm btn-success">
+                                    <a href="{{{editurl}}}" class="btn btn-sm btn-success">
                                         {{#str}}action_create, message_kopereemail{{/str}}
                                     </a>
                                 {{/hascustomtemplate}}
