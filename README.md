@@ -18,21 +18,6 @@ The idea is simple:
 * Adjust email subject and body without touching core / without theme hacks.
 * Centralize management of customized messages in an admin page.
 
-## Automatic configuration migration (what happens on install)
-
-When the plugin is installed, it performs a planned migration to take the "place" of the default email:
-
-* Copies existing configs from `message/email` to the new output (e.g., `email_provider_*` -> `kopereemail_provider_*`)
-* Adjusts `message_provider_*_enabled` flags by replacing `email` with `kopereemail`
-* Sets lock (`email_provider_*_locked = 1`) for all providers
-* Disables the old `email` processor in `mdl_message_processors`
-
-And on uninstall:
-
-* reverts `kopereemail` -> `email` in the relevant configs
-
-> This exists to make it easier so students don’t receive two emails: one with the horrible default Moodle layout and another with the template.
-
 ## How the plugin works
 
 ### 1) Provider-based content replacement (message provider)
