@@ -41,6 +41,9 @@ class email_formatter {
      * @return string
      */
     public static function to_html($message, $format = FORMAT_PLAIN) {
+        // Moodle format constants are strings ('0', '1', '2'); normalise so the strict
+        // comparisons below also match when the format arrives as an integer.
+        $format = (string) $format;
         $message = trim($message);
         if ($message === "") {
             return "";
