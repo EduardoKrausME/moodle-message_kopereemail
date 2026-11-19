@@ -24,8 +24,6 @@
 
 namespace message_kopereemail;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Email formatter tests.
  *
